@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -78,22 +79,39 @@ class _OCRState extends State<OCR> {
                           final imageAlways = await cameraController.takePicture();
 
                           File fileOff = File(imageOff.path);
+                          print('imageOff.path ${imageOff.path}');
+                          print('fileOff.path ${fileOff.path}');
 
-                          var request = http.MultipartRequest('POST', Uri.parse('http://abdulrahmanelshafie.pythonanywhere.com//img'));
-                          request.files.add(
-                              http.MultipartFile.fromBytes(
-                              'picture',
-                              File(fileOff.path).readAsBytesSync(),
-                              filename: fileOff.path
-                            )
+                          final request = http.MultipartRequest(
+                              'POST',
+                              Uri.parse('http://abdulrahmanelshafie.pythonanywhere.com/img')
                           );
+                          final headers = {
+                            "Content-type": "multipart/form-date"
+                          };
+                          request.files.add(
+                              http.MultipartFile(
+                                'image',
+                                fileOff.readAsBytes().asStream(),
+                                fileOff.lengthSync(),
+                                filename: imageOff.name
+                              )
+                          );
+
+                          request.headers.addAll(headers);
+
                           print('send');
-                          var res = await request.send();
-                          print('res.statusCode ${res.statusCode}');
-                          print('res.stream ${res.stream}');
-                          print('res.request ${res.request}');
-                          print('res.headers ${res.headers}');
-                          print('res.reasonPhrase ${res.reasonPhrase}');
+                          final response = await request.send();
+                          print('response.statusCode ${response.statusCode}');
+                          print('response.stream ${response.stream}');
+                          print('response.request ${response.request}');
+                          print('response.headers ${response.headers}');
+                          print('response.reasonPhrase ${response.reasonPhrase}');
+
+                          http.Response res = await http.Response.fromStream(response);
+                          final resJson = jsonDecode(res.body);
+                          print(resJson['msg']);
+                          print(resJson['name']);
 
 
 
