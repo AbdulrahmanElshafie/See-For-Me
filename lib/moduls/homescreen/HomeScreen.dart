@@ -114,9 +114,9 @@ class HomeScreen extends StatelessWidget {
           ),
           Navigate(context),
           GestureDetector(
-            onTap: () {
+            onTap: () async {
               final player = AudioPlayer();
-              player.play(AssetSource('Info.mp3'));
+              await player.play(AssetSource('Info.mp3'));
             },
           ),
         ],
