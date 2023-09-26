@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "54331985752",
+    "project_id": "see-for-me-a8e66",
+    "storage_bucket": "see-for-me-a8e66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54331985752:android:fef28439f7269e4ade1f2d",
+        "android_client_info": {
+          "package_name": "fci.seeforme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54331985752-95qsetpj74bo4tb8fikk6ic6mdpkq4ad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdoYGo1u7nEUTQVqf2hS11NZ2UEK6hLJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54331985752-95qsetpj74bo4tb8fikk6ic6mdpkq4ad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54331985752:android:044cbb2047e133d5de1f2d",
+        "android_client_info": {
+          "package_name": "seeforme.app.see_for_me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54331985752-95qsetpj74bo4tb8fikk6ic6mdpkq4ad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdoYGo1u7nEUTQVqf2hS11NZ2UEK6hLJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54331985752-95qsetpj74bo4tb8fikk6ic6mdpkq4ad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
