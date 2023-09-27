@@ -15,6 +15,7 @@ class OCR extends StatefulWidget {
 class _OCRState extends State<OCR> {
   late List<CameraDescription> cameras;
   late CameraController cameraController;
+  final player = AudioPlayer();
 
   @override
   void initState(){
@@ -113,7 +114,6 @@ class _OCRState extends State<OCR> {
                           );
 
                           final audioBytes = audio.bodyBytes;
-                          final player = AudioPlayer();
                           await player.play(BytesSource(audioBytes));
 
                           if (!mounted) return;

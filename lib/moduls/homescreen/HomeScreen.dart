@@ -5,6 +5,7 @@ import '../../shared/components/Components.dart';
 
 class HomeScreen extends StatelessWidget {
   FirebaseFirestore db = FirebaseFirestore.instance;
+  final player = AudioPlayer();
 
   HomeScreen({super.key});
 
@@ -114,9 +115,8 @@ class HomeScreen extends StatelessWidget {
           ),
           Navigate(context),
           GestureDetector(
-            onTap: () async {
-              final player = AudioPlayer();
-              await player.play(AssetSource('Info.mp3'));
+            onTap: ()  {
+              player.play(AssetSource('Info.mp3'));
             },
           ),
         ],
