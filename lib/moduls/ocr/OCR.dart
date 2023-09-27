@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import '../../shared/components/Components.dart';
@@ -73,14 +73,15 @@ class _OCRState extends State<OCR> {
                           // take 3 imgs with different modes
                           cameraController.setFlashMode(FlashMode.off);
                           final imageOff = await cameraController.takePicture();
-                          cameraController.setFlashMode(FlashMode.auto);
-                          final imageAuto = await cameraController.takePicture();
-                          cameraController.setFlashMode(FlashMode.always);
-                          final imageAlways = await cameraController.takePicture();
+                          // uncomment when going with the preprocessing
+                          // cameraController.setFlashMode(FlashMode.auto);
+                          // final imageAuto = await cameraController.takePicture();
+                          // cameraController.setFlashMode(FlashMode.always);
+                          // final imageAlways = await cameraController.takePicture();
 
+
+                          // prepare the img file to be sent to the server
                           File fileOff = File(imageOff.path);
-                          print('imageOff.path ${imageOff.path}');
-                          print('fileOff.path ${fileOff.path}');
 
                           final request = http.MultipartRequest(
                               'POST',
@@ -100,33 +101,23 @@ class _OCRState extends State<OCR> {
 
                           request.headers.addAll(headers);
 
-                          print('send');
-                          final response = await request.send();
-                          print('response.statusCode ${response.statusCode}');
-                          print('response.stream ${response.stream}');
-                          print('response.request ${response.request}');
-                          print('response.headers ${response.headers}');
-                          print('response.reasonPhrase ${response.reasonPhrase}');
+                          // send the file to the sever
+                          await request.send();
 
-                          http.Response res = await http.Response.fromStream(response);
-                          final resJson = jsonDecode(res.body);
-                          print(resJson['msg']);
-                          print(resJson['name']);
+                          // after sending the img and converting it to audio, the mp3 file should be saved and sent through get method
+                          // as doing so with one method didn't succeed using get method to get the mp3 file and play it immediately
+                          var audio = await http.get(
+                              Uri.parse(
+                                  'http://abdulrahmanelshafie.pythonanywhere.com/audio'
+                              )
+                          );
 
-
+                          final audioBytes = audio.bodyBytes;
+                          final player = AudioPlayer();
+                          await player.play(BytesSource(audioBytes));
 
                           if (!mounted) return;
 
-                          // If the picture was taken, display it on a new screen.
-                          // await Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) => DisplayPictureScreen(
-                          //       // Pass the automatically generated path to
-                          //       // the DisplayPictureScreen widget.
-                          //       imagePath: image.path,
-                          //     ),
-                          //   ),
-                          // );
                         } catch (e) {
                           // If an error occurs, log the error to the console.
                           print('error $e');
@@ -143,19 +134,3 @@ class _OCRState extends State<OCR> {
       );
     }
   }
-
-class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
-
-  const DisplayPictureScreen({super.key, required this.imagePath});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
-    );
-  }
-}

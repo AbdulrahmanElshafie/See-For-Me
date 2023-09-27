@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:  TestPage(),
+      home:  start(),
       debugShowCheckedModeBanner: false,
       routes: {
         '/home': (context) => HomeScreen(),

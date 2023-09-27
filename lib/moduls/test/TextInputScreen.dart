@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:audioplayers/audioplayers.dart';
 
 class TestPage extends StatelessWidget {
@@ -35,6 +34,7 @@ class TestPage extends StatelessWidget {
                       print('response.statusCode ${response.statusCode}');
                       print('response.body ${response.body}');
                       print('response.headers ${response.headers}');
+                      print('response.reasonPhrase ${response.reasonPhrase}');
 
                       final audioBytes = response.bodyBytes;
                       final player = AudioPlayer();
