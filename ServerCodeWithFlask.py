@@ -1,11 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_world():
-    return 'This is my first API call!'
+    return jsonify(
+            {
+                "msg": "success",
+            }
+        )
 
 @app.route('/post', methods=["POST"])
 def testpost():
@@ -29,4 +33,8 @@ def recImg():
     except Exception as e:
         return jsonify({"msg": str(e)})
 
-    return file.filename
+
+@app.route('/audio', methods=['GET'])
+def audio():
+    mp3FilePath = 'Info.mp3'
+    return send_file(mp3FilePath, mimetype='audio/mpeg', as_attachment=True)
