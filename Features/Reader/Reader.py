@@ -16,10 +16,10 @@ class Reader:
         return text
 
     def txt_to_speech(self, text):
-        text_to_speech(text)
+        return text_to_speech(text)
 
     def text_correction(self, text):
-        text_correction(text)
+        return text_correction(text)
 
     def preprocessing(self, img):
         img_ = cv2.imread(img)  # to make the image be binary color (black&white)
@@ -29,3 +29,11 @@ class Reader:
                                            cv2.THRESH_BINARY, 17, 5)
 
         return img_result
+
+    def pipline(self, img):
+        img = self.preprocessing(img)
+        txt = self.image_to_txt(img)
+        corrected_txt = self.text_correction(txt)
+        txt_read = self.txt_to_speech(corrected_txt)
+
+        return txt_read
