@@ -5,9 +5,9 @@ from flask import Flask, request, jsonify, send_file
 
 app = Flask(__name__)
 
-choice = int(input('Enter your choice: '))
-
-
+@app.route("/")
+def default():
+    return 'hello client'
 @app.route("/ocr")
 def OCR():
     img = request.files['image']
@@ -29,3 +29,6 @@ def Navigation():
 @app.route("/perception")
 def Perception():
     perception = Perception()
+
+
+app.run()
