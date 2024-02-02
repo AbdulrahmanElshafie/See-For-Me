@@ -4,6 +4,7 @@ from Features.Navigator.Navigator import Navigator
 from Components.Components import *
 
 
-img = 'Screenshot 2023-11-10 171826.png'
+img = 'img2.jpeg'
 reader = Reader()
 txt_read = reader.pipline(img)
+print(txt_read)

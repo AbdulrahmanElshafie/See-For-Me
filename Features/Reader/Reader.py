@@ -23,18 +23,24 @@ class Reader:
         return text_correction(text)
 
     def preprocessing(self, img):
-        img_ = cv2.imread(img)  # to make the image be binary color (black&white)
-        img_ = cv2.cvtColor(img_, cv2.COLOR_BGR2GRAY)
-        img_ = cv2.resize(img_, (900, 950))
-        img_result = cv2.adaptiveThreshold(img_, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  # use adaptive_Threshold library
-                                           cv2.THRESH_BINARY, 17, 5)
-        cv2.imwrite('Features/Reader/processed/processedImg.png', img_result)
-        return 'Features/Reader/processed/processedImg.png'
+        img_ = cv2.imread(img)
+
+        # make image gray scale
+        gray_img = cv2.cvtColor(img_, cv2.COLOR_BGR2GRAY)
+        cv2.imwrite('Features/Reader/processed/processedImg-gray.png', gray_img)
+        # img_result = cv2.adaptiveThreshold(img_, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  # use adaptive_Threshold library
+        #                                    cv2.THRESH_BINARY, 17, 5)
+        # cv2.imwrite('Features/Reader/processed/processedImg-final.png', gray_img)
+        return 'Features/Reader/processed/processedImg-gray.png'
 
     def pipline(self, img):
-        # img = self.preprocessing(img)
+        img = self.preprocessing(img)
         txt = self.image_to_txt(img)
+        print(f'txt {txt}')
+        print()
         corrected_txt = self.text_correction(txt)
+        print(f'corrected_txt {corrected_txt}')
+        print()
         txt_read = self.txt_to_speech(corrected_txt)
 
         return txt_read

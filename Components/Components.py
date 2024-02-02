@@ -1,6 +1,8 @@
 from gtts import gTTS
 from io import BytesIO
 from transformers import pipeline
+import imutils
+import numpy as np
 from pytesseract import pytesseract, Output
 import cv2
 
