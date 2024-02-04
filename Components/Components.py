@@ -7,10 +7,14 @@ from pytesseract import pytesseract, Output
 import cv2
 
 
-def text_correction(text):
+def text_correction(text: str):
+    sentences = text.split('. ')
+    res = ''
     fix_spelling = pipeline("text2text-generation", model="oliverguhr/spelling-correction-english-base")
-    text = fix_spelling(text, max_length=30000)[0]['generated_text']
-    return text
+    for s in sentences:
+        corrected = fix_spelling(s, max_length=5000)[0]['generated_text']
+        res += corrected + ' '
+    return res
 
 
 def text_to_speech(text):
