@@ -12,8 +12,11 @@ results = model.track(source=0, show=True, stream=True)
 for result in results:
     boxes = result.boxes
     xywhn = boxes.xywhn
+    id = boxes.id.int()
     xywhn = xywhn.numpy()
     print(xywhn)
+    print(id)
+
 
 
 

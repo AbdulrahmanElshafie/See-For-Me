@@ -5,7 +5,7 @@ import imutils
 import numpy as np
 from pytesseract import pytesseract, Output
 import cv2
-
+from ultralytics import YOLO
 
 def text_correction(text: str):
     sentences = text.split('. ')
