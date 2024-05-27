@@ -24,6 +24,7 @@ def getTxtRead():
 @app.route("/navigator")
 def Navigation():
     navigator = Navigator()
+    return "Nav"
 
 
 @app.route("/perception")

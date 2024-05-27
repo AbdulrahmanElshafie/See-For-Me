@@ -24,3 +24,7 @@ def text_to_speech(text):
     speech.write_to_fp(mp3_fo)
     mp3_fo.seek(0)
     return mp3_fo
+
+# calculate distance
+def get_distance(pos1, pos2):
+  return np.round(np.sqrt((np.power(pos1[0] - pos2[0], 2) + np.power(pos1[1] - pos2[1], 2))), 3)
