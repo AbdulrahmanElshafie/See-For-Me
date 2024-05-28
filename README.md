@@ -9,10 +9,9 @@ Mimicking human eyes and functions in software functions through AI algorithms a
 
 # Objectives
 By the of this project we should have software that helps a blind person in the following:
-● Independent from others, can do what he wants whenever he wants.
-● Help blind people to have sight-like ability to see and act, navigate, and communicate
-with the community, money tasks, and daily tasks independently.
-● Replacement for the eye.
+- Independent from others, can do what he wants whenever he wants.
+- Help blind people to have sight-like ability to see and act, navigate, and communicate with the community, money tasks, and daily tasks independently.
+- Replacement for the eye.
 
 # Proposed Solution
 We decided that our project should include the following features:
