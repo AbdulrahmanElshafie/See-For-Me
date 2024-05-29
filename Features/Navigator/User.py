@@ -1,5 +1,4 @@
 from Components.Components import *
-from Features.Navigator.TrackedObj import TrackedObj
 
 
 class User:

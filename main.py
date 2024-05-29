@@ -1,7 +1,4 @@
-from Features.Reader.Reader import Reader
-from Features.Perception.Perception import Perception
-from Features.Navigator.Navigator import Navigator
-from flask import Flask, request, jsonify, send_file
+from Components.Components import *
 
 app = Flask(__name__)
 
