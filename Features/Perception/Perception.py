@@ -10,12 +10,18 @@ class Perception:
         genai.configure(api_key="AIzaSyAA21mQw2z98vNjk2h0dso8QXcNgkxQrUY")
 
     def set_model_parameters(self):
-        generation_config = {
-            "temperature": 1,
-            "top_p": 0.95,
-            "top_k": 64,
-            "max_output_tokens": 8192,
-        }
+        generation_config = genai.GenerationConfig(
+            temperature=1.0,
+            top_p=0.95,
+            top_k=64,
+            max_output_tokens=8192
+        )
+        # generation_config = {
+        #     "temperature": 1,
+        #     "top_p": 0.95,
+        #     "top_k": 64,
+        #     "max_output_tokens": 8192,
+        # }
         return generation_config
 
     def set_safety_settings(self):
@@ -53,7 +59,9 @@ class Perception:
         self.configure()
         model = self.initialize_model()
         img = self.open_img(img_path)
-        description = model.generate_content(["Describe what you see.", img], stream=True)
-        description = description.resolve()
+        # description = model.generate_content(["Describe what you see.", img], stream=True)
+        # description.resolve()
+        description = model.generate_content(["Describe what you see.", img])
+        description = description.text
         txt_read = text_to_speech(description)
         return txt_read
