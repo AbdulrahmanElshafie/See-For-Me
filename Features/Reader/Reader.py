@@ -16,12 +16,6 @@ class Reader:
                 text += data['text'][i] + " "
         return text
 
-    def txt_to_speech(self, text):
-        return text_to_speech(text)
-
-    def text_correction(self, text):
-        return text_correction(text)
-
     def preprocessing(self, img):
         img_ = cv2.imread(img)
 
@@ -31,16 +25,12 @@ class Reader:
         # img_result = cv2.adaptiveThreshold(img_, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  # use adaptive_Threshold library
         #                                    cv2.THRESH_BINARY, 17, 5)
         # cv2.imwrite('Features/Reader/processed/processedImg-final.png', gray_img)
-        return 'Features/Reader/processed/processedImg-gray.png'
+        return 'processedImg-gray.png'
 
-    def pipline(self, img):
+    def read(self, img):
         img = self.preprocessing(img)
         txt = self.image_to_txt(img)
-        print(f'txt {txt}')
-        print()
-        corrected_txt = self.text_correction(txt)
-        print(f'corrected_txt {corrected_txt}')
-        print()
-        txt_read = self.txt_to_speech(corrected_txt)
+        corrected_txt = text_correction(txt)
+        txt_read = text_to_speech(corrected_txt)
 
         return txt_read

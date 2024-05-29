@@ -6,6 +6,11 @@ import numpy as np
 from pytesseract import pytesseract, Output
 import cv2
 from ultralytics import YOLO
+from Features.Navigator.TrackedObj import TrackedObj
+from Features.Navigator.User import User
+import google.generativeai as genai
+import PIL.Image
+
 
 def text_correction(text: str):
     sentences = text.split('. ')
@@ -20,11 +25,15 @@ def text_correction(text: str):
 def text_to_speech(text):
     mp3_fo = BytesIO()
     speech = gTTS(text, lang='en')
-    speech.save("Features/Reader/mp3s/1.mp3")
+    speech.save("txt.mp3")
     speech.write_to_fp(mp3_fo)
     mp3_fo.seek(0)
     return mp3_fo
 
+
 # calculate distance
 def get_distance(pos1, pos2):
-  return np.round(np.sqrt((np.power(pos1[0] - pos2[0], 2) + np.power(pos1[1] - pos2[1], 2))), 3)
+    return np.round(np.sqrt((np.power(pos1[0] - pos2[0], 2) + np.power(pos1[1] - pos2[1], 2))), 3)
+
+
+user = User()

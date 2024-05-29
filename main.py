@@ -5,31 +5,32 @@ from flask import Flask, request, jsonify, send_file
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def default():
     return 'hello client'
-@app.route("/ocr")
-def OCR():
+
+
+@app.route("/read")
+def read_text():
     img = request.files['image']
     reader = Reader()
-    txt_read = reader.pipline(img)
+    reader.read(img)
+    return send_file('txt.mp3', mimetype='audio/mpeg', as_attachment=True)
 
 
-@app.route("/ocraudio")
-def getTxtRead():
-    mp3FilePath = 'mp3s/1.mp3'
-    return send_file(mp3FilePath, mimetype='audio/mpeg', as_attachment=True)
-
-
-@app.route("/navigator")
-def Navigation():
+@app.route("/navigate")
+def navigate_user():
+    objs = request.files['objects']
     navigator = Navigator()
-    return "Nav"
+    navigator.navigate(objs)
 
 
-@app.route("/perception")
-def Perception():
+@app.route("/describe")
+def describe_image():
+    img = request.files['image']
     perception = Perception()
+    perception.pipline(img)
 
 
 app.run()
