@@ -1,5 +1,4 @@
-from Features.Perception.Perception import Perception
+from Components.Components import *
 
-img = r"D:\Photos\alex-knight-2EJCSULRwC8-unsplash.jpg"
-perception = Perception()
-perception.pipline(img)
+reader = Reader()
+text_to_speech('hello')
