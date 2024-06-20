@@ -1,4 +1,5 @@
 from Components.Components import *
+from Components.Features import *
 
 app = Flask(__name__)
 
