@@ -1,5 +1,5 @@
 from Components.Components import *
-
+from Components.Features import *
 
 class TrackedObj:
     def __init__(self, init_pos, id, w, h):

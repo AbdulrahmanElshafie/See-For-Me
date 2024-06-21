@@ -1,5 +1,5 @@
 from Components.Components import *
-
+from Components.Features import *
 
 class Navigator:
     def __init__(self):

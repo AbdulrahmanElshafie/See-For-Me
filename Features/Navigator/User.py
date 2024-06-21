@@ -1,4 +1,5 @@
 from Components.Components import *
+from Components.Features import *
 
 
 class User:
@@ -24,6 +25,7 @@ class User:
     def check_user_safety(self, objs: [TrackedObj], safe_measure):
         safe = True
         violating_objs = []
+
         for ob in range(len(objs)):
 
             # if the distance between user's position and objects' position is <= safe measurement
