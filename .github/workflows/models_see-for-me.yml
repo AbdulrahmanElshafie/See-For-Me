@@ -76,6 +76,6 @@ jobs:
           app-name: 'see-for-me'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: './app.zip'
+          
         timeout-minutes: 15
           
