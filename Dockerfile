@@ -6,8 +6,8 @@
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-ARG PYTHON_VERSION=3.10
-FROM python:3.10-slim
+ARG PYTHON_VERSION=3.11
+FROM python:3.11-slim
 
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -52,4 +52,4 @@ USER appuser
 EXPOSE 8000
 
 # Run the application.
-CMD python main.py
+CMD ["python", "main.py"]
