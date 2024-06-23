@@ -8,6 +8,7 @@ app = Flask(__name__)
 def default():
     return 'hello client'
 
+
 @app.route("/describe")
 def describe_image():
     img = request.files['image']
