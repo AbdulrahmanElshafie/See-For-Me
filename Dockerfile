@@ -18,18 +18,18 @@ ENV PYTHONUNBUFFERED=1
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
-
+# ARG UID=10001
+# RUN adduser \
+# --disabled-password \
+# --gecos "" \
+# --home "/nonexistent" \
+# --shell "/sbin/nologin" \
+# --no-create-home \
+# --uid "${UID}" \
+# appuser
+# 
 # Copy the source code into the container.
-COPY --chown=appuser:appuser . /app
+COPY --chown=root:root . /app
 WORKDIR /app
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
@@ -43,7 +43,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 # Switch to the non-privileged user to run the application.
-USER appuser
+#USER appuser
 
 
 # Expose the port that the application listens on.
