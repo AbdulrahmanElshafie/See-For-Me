@@ -21,7 +21,6 @@ if __name__ == '__main__':
        def load_config(self): 
            config = super().load_config() 
            config['bind'] = '0.0.0.0:8000'# Adjust port if needed 
-           config['workers'] = 1# Adjust workers as needed
            return config 
 
        def load_wsgi_app(self):
