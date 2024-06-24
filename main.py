@@ -1,4 +1,3 @@
-from Components.Components import *
 from Features.Perception import Perception
 from gunicorn.app.base import Application
 
