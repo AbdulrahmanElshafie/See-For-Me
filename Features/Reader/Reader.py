@@ -6,7 +6,7 @@ class Reader:
         pass
 
     def image_to_txt(self, img):
-        pytesseract.tesseract_cmd = r"D:\Program Files\Tesseract-OCR\tesseract.exe"
+        #pytesseract.tesseract_cmd = r"D:\Program Files\Tesseract-OCR\tesseract.exe"
         myconfig = r"--psm 11 --oem 3"
         data = pytesseract.image_to_data(img, config=myconfig, output_type=Output.DICT)
         amount_box = len(data['text'])
