@@ -21,16 +21,16 @@ class Reader:
 
         # make image gray scale
         gray_img = cv2.cvtColor(img_, cv2.COLOR_BGR2GRAY)
+        return gray_img
         cv2.imwrite('Features/Reader/processed/processedImg-gray.png', gray_img)
         # img_result = cv2.adaptiveThreshold(img_, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  # use adaptive_Threshold library
         #                                    cv2.THRESH_BINARY, 17, 5)
         # cv2.imwrite('Features/Reader/processed/processedImg-final.png', gray_img)
-        return 'processedImg-gray.png'
+        #return 'processedImg-gray.png'
 
     def read(self, img):
         img = self.preprocessing(img)
         txt = self.image_to_txt(img)
         corrected_txt = text_correction(txt)
         txt_read = text_to_speech(corrected_txt)
-
         return txt_read
