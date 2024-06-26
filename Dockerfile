@@ -6,8 +6,8 @@
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-ARG PYTHON_VERSION=3.10
-FROM python:3.10-slim
+ARG PYTHON_VERSION=3.11
+FROM python:3.11-slim
 
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -16,9 +16,6 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # the application crashes without emitting any logs due to buffering.
 ENV PYTHONUNBUFFERED=1
 
-# Copy the source code into the container.
-COPY . /app
-WORKDIR /app
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
@@ -32,6 +29,10 @@ RUN adduser \
     --uid "${UID}" \
     appuser
 
+# Copy the source code into the container.
+COPY . /app
+WORKDIR /app
+
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
 # Leverage a bind mount to requirements.txt to avoid having to copy them into
@@ -39,8 +40,6 @@ RUN adduser \
 RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
-
-RUN pip install google-generativeai
 
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
@@ -52,4 +51,4 @@ USER appuser
 EXPOSE 8000
 
 # Run the application.
-CMD python main.py
+CMD ["python", "main.py"]
