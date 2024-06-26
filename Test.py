@@ -1,8 +1,8 @@
 from Components.Components import *
-from Components.Features import *
+from Features.Reader.Reader import Reader
 
-# reader = Reader()
-# text_to_speech('hello')
+reader = Reader()
+reader.read("processedImg-final.png")
 
-perceptor = Perception()
-description = perceptor.pipline("C:\\Users\\DELL\\Desktop\\pics\\2.png")
+
+

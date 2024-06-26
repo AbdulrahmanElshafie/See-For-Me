@@ -1,5 +1,5 @@
 from Components.Components import *
-from Components.Features import *
+from Features.Reader.Reader import Reader
 
 app = Flask(__name__)
 
@@ -16,19 +16,6 @@ def read_text():
     reader.read(img)
     return send_file('txt.mp3', mimetype='audio/mpeg', as_attachment=True)
 
-
-@app.route("/navigate")
-def navigate_user():
-    objs = request.files['objects']
-    navigator = Navigator()
-    navigator.navigate(objs)
-
-
-@app.route("/describe")
-def describe_image():
-    img = request.files['image']
-    perception = Perception()
-    perception.pipline(img)
 
 
 app.run()
