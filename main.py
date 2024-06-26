@@ -23,8 +23,9 @@ def default():
 def read_text():
     img = request.files['image']
     reader = Reader()
-    reader.read(img)
-    return send_file('txt.mp3', mimetype='audio/mpeg', as_attachment=True)
+    text = reader.read(img)
+    return text
+    #return send_file('txt.mp3', mimetype='audio/mpeg', as_attachment=True)
 
 
 if __name__ == '__main__':

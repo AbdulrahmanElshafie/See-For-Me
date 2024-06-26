@@ -32,5 +32,5 @@ class Reader:
         img = self.preprocessing(img)
         txt = self.image_to_txt(img)
         corrected_txt = text_correction(txt)
-        txt_read = text_to_speech(corrected_txt)
-        return txt_read
+        #txt_read = text_to_speech(corrected_txt)
+        return corrected_txt
