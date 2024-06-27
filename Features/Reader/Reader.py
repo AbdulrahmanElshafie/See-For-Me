@@ -23,6 +23,7 @@ class Reader:
     def __init__(self):
         pass
 
+
     def image_to_txt(self, img):
         #pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
         myconfig = r"--psm 11 --oem 3"
@@ -33,18 +34,14 @@ class Reader:
             if float(data['conf'][i]) > 80:
                 text += data['text'][i] + " "
         return text
+    
 
     def preprocessing(self, img):
         img_ = Image.open(img)
-
         # make image gray scale
         gray_img = img_.convert('L')
         return gray_img
-        #cv2.imwrite('Features/Reader/processed/processedImg-gray.png', gray_img)
-        # img_result = cv2.adaptiveThreshold(img_, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  # use adaptive_Threshold library
-        #                                    cv2.THRESH_BINARY, 17, 5)
-        # cv2.imwrite('Features/Reader/processed/processedImg-final.png', gray_img)
-        #return 'processedImg-gray.png'
+
 
     def read(self, img):
         img = self.preprocessing(img)
