@@ -5,7 +5,7 @@ from gunicorn.app.base import Application
 class FlaskApp(Application):
     def load_config(self): 
         config = super().load_config() 
-        config['bind'] = '0.0.0.0:8000'# Adjust port if needed 
+        config['bind'] = '0.0.0.0:8000'# Adjust port 
         return config 
     def load_wsgi_app(self):
         return app 
