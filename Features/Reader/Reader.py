@@ -1,7 +1,7 @@
 from io import BytesIO
 from transformers import pipeline
 from pytesseract import pytesseract, Output 
-import cv2
+from PIL import Image
 from flask import Flask, request, jsonify, send_file
 import os
 
@@ -35,10 +35,10 @@ class Reader:
         return text
 
     def preprocessing(self, img):
-        img_ = cv2.imread(img)
+        img_ = Image.open(img)
 
         # make image gray scale
-        gray_img = cv2.cvtColor(img_, cv2.COLOR_BGR2GRAY)
+        gray_img = img_.convert('L')
         return gray_img
         #cv2.imwrite('Features/Reader/processed/processedImg-gray.png', gray_img)
         # img_result = cv2.adaptiveThreshold(img_, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  # use adaptive_Threshold library
