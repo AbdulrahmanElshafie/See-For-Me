@@ -2,7 +2,6 @@
 from io import BytesIO
 from transformers import pipeline
 from pytesseract import pytesseract, Output 
-import cv2
 from flask import Flask, request, jsonify, send_file
 
 def text_correction(text: str):
