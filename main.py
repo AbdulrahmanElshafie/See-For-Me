@@ -19,7 +19,7 @@ def default():
     return 'hello client'
 
 
-@app.route("/read", methods = 'POST')
+@app.route("/read", methods = ["POST"])
 def read_text():
     img = request.files['image']
     reader = Reader()
