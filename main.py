@@ -1,5 +1,5 @@
 from Components.Components import *
-from Features.Reader.Reader import Reader
+#from Features.Reader.Reader import Reader
 from gunicorn.app.base import Application
 
 class FlaskApp(Application):
@@ -19,13 +19,18 @@ def default():
     return 'hello client'
 
 
-@app.route("/read", methods = ["POST"])
-def read_text():
-    img = request.files['image']
-    reader = Reader()
-    text = reader.read(img)
-    return text
+# @app.route("/reader", methods = ["POST"])
+# def read_text():
+    # img = request.files['image']
+    # reader = Reader()
+    # text = reader.read(img)
+    # return text
 
+@app.route('/read', methods=['POST'])
+def read_text():
+    text = request.data.decode('utf-8')  # Get text from request body
+    processed_text = text_correction(text)  # Process the text
+    return processed_text
 
 
 if __name__ == '__main__':
