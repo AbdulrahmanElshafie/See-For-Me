@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 USER appuser
 
 # Add Tesseract OCR to the PATH
-ENV PATH="/app/Features/Reader/Tesseract-OCR:${PATH}"
+# ENV PATH="/app/Features/Reader/Tesseract-OCR:${PATH}"
 
 # Expose the port that the application listens on.
 EXPOSE 8000
