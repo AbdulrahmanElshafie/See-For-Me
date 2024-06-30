@@ -25,7 +25,7 @@ def read_text():
     reader = Reader()
     text = reader.read(img)
     return text
-    #return send_file('txt.mp3', mimetype='audio/mpeg', as_attachment=True)
+
 
 
 if __name__ == '__main__':
