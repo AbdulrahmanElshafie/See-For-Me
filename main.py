@@ -1,5 +1,5 @@
 from Components.Components import *
-from Features.Perception import Perception
+from Features.Perception.Perception import Perception
 from gunicorn.app.base import Application
 
 class FlaskApp(Application):
