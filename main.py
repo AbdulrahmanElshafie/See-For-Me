@@ -1,18 +1,6 @@
 from transformers import pipeline
 from pytesseract import pytesseract, Output
 from flask import Flask, request, jsonify
-from gunicorn.app.base import Application
-
-
-class FlaskApp(Application):
-    def load_config(self):
-        config = super().load_config()
-        config['bind'] = '0.0.0.0:8000'  # Adjust port if needed
-        return config
-
-    def load_wsgi_app(self):
-        return app
-
 
 app = Flask(__name__)
 
@@ -55,4 +43,4 @@ def read_txt():
 
 
 if __name__ == '__main__':
-    FlaskApp().run()
+    app.run()
