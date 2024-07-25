@@ -21,7 +21,7 @@ class Reader:
 
         # make image gray scale
         gray_img = cv2.cvtColor(img_, cv2.COLOR_BGR2GRAY)
-        cv2.imwrite('Features/Reader/processed/processedImg-gray.png', gray_img)
+        cv2.imwrite('processed/processedImg-gray.png', gray_img)
         # img_result = cv2.adaptiveThreshold(img_, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,  # use adaptive_Threshold library
         #                                    cv2.THRESH_BINARY, 17, 5)
         # cv2.imwrite('Features/Reader/processed/processedImg-final.png', gray_img)

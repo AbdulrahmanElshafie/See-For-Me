@@ -66,32 +66,26 @@ class User:
             safe_pos = True
             new_x, new_y, direction = self.calc_next_step(i, 2)
             new_pos = np.array(new_x, new_y)  # get a new position suggestion
-
             min_distance = 1e6
             # check each object
             for obj in objs:
-
                 # if the distance between suggestions and prediction is less than safe measurement
                 # then safe distance then the suggestion is not safe
                 # see where the object will go
                 safe = self.check_pos_safety(obj, new_pos, safe_distance)
 
-                #  or not self.check_in_obj_path(new_pos, obj.init_pos, obj_pred_pos)
-                # or not (new_pos[0] > 6.5 and new_pos[0] < 11.5)
                 if not safe:
                     safe_pos = False
                     break
 
                 obj_pred_pos = obj.calc_pred_pos(2)
                 distance = get_distance(obj_pred_pos, new_pos)
-
                 if distance < min_distance:
                     min_distance = distance
 
             # if suggestion is safe set pos as best position
             if safe_pos and min_distance > max_min_distance:
                 max_min_distance = min_distance
-                # best_pos = np.array(self.calc_next_step(i, 1))
                 best_angle = i
 
         # take the safest option available
